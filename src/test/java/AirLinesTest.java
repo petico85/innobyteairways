@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class AirLinesTest {
 
     @Test
-    public void test()
+    public void basicTest()
     {
         AirLines testAirlines = new AirLines();
         //még üres, tehát null-t kapunk vissza

@@ -1,26 +1,24 @@
 import java.util.ArrayList;
 
-/**
- * Légitársaságok listája
- * */
-public class AirLines {
+public class Cities {
 
-    private ArrayList<AirLine> airLines;
 
-    public AirLines()
+    private ArrayList<City> cities;
+
+    public Cities()
     {
-        airLines = new ArrayList<AirLine>();
+        cities = new ArrayList<City>();
     }
 
     /**
-     * Visszaadja az összes légitársaságot tartalmazó listát
+     * Visszaadja az összes várost tartalmazó listát
      * Ha üres akkor null értékkel tér vissza
      * */
-    public ArrayList<AirLine> getAirlines()
+    public ArrayList<City> getCities()
     {
-        if(!airLines.isEmpty())
+        if(!cities.isEmpty())
         {
-            return airLines;
+            return cities;
         }
         else
         {
@@ -32,9 +30,9 @@ public class AirLines {
      * Ha minden redben, hozzáad egy elemet a listához és true értékkel tér vissza
      * ha az index már létezik, akkor nem adja hozzá az elemet és false értékkel tér vissza
      * */
-    public boolean add(int ID, String name)
+    public boolean add(int ID, String name, int population)
     {
-        for(AirLine element : airLines)
+        for(City element : cities)
         {
             if(element.ID == ID)
             {
@@ -42,19 +40,18 @@ public class AirLines {
             }
         }
 
-        AirLine addedAL = new AirLine(ID, name);
-        airLines.add(addedAL);
+        City addedCity = new City(ID, name, population);
+        cities.add(addedCity);
         return true;
     }
 
     /**
-     * ID alapján keresés
+     * ID alapján keres és egy város objektummal tér vissza
      * Ha nincs ilyen ID null értékkel tér vissza
-     * Gondolkoztam, hogy csak a nevet adja vissza, de aztán úgy döntöttem, jobb egységként kezelni az ID-t és a nevet
      * */
-    public AirLine getAirline(int ID)
+    public City getCity(int ID)
     {
-        for(AirLine element : airLines)
+        for(City element : cities)
         {
             if(element.ID == ID)
             {
@@ -63,6 +60,5 @@ public class AirLines {
         }
         return null;
     }
-
 
 }
