@@ -1,0 +1,15 @@
+﻿<?xml version="1.0"?>
+<Airlines>
+  <Airline>
+      <ID>1</ID>
+      <CompanyName>European Airline</CompanyName>
+  </Airline>
+  <Airline>
+      <ID>2</ID>
+      <CompanyName>American Airline</CompanyName>
+  </Airline>
+  <Airline>
+      <ID>3</ID>
+      <CompanyName>Asian Airline</CompanyName>
+  </Airline>
+</Airlines>
