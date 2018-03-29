@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+/**
+ * Városok listája
+ * */
 public class Cities {
 
 

@@ -15,6 +15,10 @@ public class AirLines {
     /**
      * Visszaadja az összes légitársaságot tartalmazó listát
      * Ha üres akkor null értékkel tér vissza
+     *
+     * FELADAT RÉSZ:
+     * Legyen egy függvény, ami visszaadja az összes légitársaságot.
+     *
      * */
     public ArrayList<AirLine> getAirlines()
     {
