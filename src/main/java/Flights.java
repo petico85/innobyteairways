@@ -8,6 +8,11 @@ public class Flights {
         flights = new ArrayList<Flight>();
     }
 
+    public Flights(ArrayList<Flight> flights)
+    {
+        this.flights=flights;
+    }
+
     /**
      * Visszaadja az összes járatot tartalmazó listát
      * Ha üres akkor null értékkel tér vissza
@@ -48,6 +53,23 @@ public class Flights {
     }
 
     /**
+     * Mint az fenti csak más paraméterekkel
+     * */
+    public boolean add(Flight addFlight)
+    {
+        for(Flight element : this.flights)
+        {
+            if(element.ID == addFlight.ID)
+            {
+                return false;
+            }
+        }
+
+        flights.add(addFlight);
+        return true;
+    }
+
+    /**
      * ID alapján keresés és visszaadja a lista megfelelő elem objektumát
      * Ha nincs ilyen ID null értékkel tér vissza
      * */
@@ -72,15 +94,15 @@ public class Flights {
     {
         if(startCity!=null && destinationCity!=null)//-tól-ig szűrés
         {
-            return flightsFromStartToDestination(startCity,destinationCity);
+            return flightsFromStartToDestination(startCity.ID,destinationCity.ID);
         }
         else if(startCity!=null)//minden járat ami innen indul
         {
-            return flightsFromStartCities(startCity);
+            return flightsFromStartCities(startCity.ID);
         }
         else if(destinationCity!=null)//minden járat ami ide érkezik
         {
-            return flightsToDestinationCities(destinationCity);
+            return flightsToDestinationCities(destinationCity.ID);
         }
 
         return null;
@@ -106,12 +128,12 @@ public class Flights {
     }
 
 
-    private ArrayList<Flight> flightsFromStartCities(City startCity)
+    public ArrayList<Flight> flightsFromStartCities(int startCityID)
     {
         ArrayList<Flight> fromCityFlights = new ArrayList<Flight>();
         for(Flight element : flights)
         {
-            if(element.startCityID == startCity.ID)
+            if(element.startCityID == startCityID)
             {
                 fromCityFlights.add(element);
             }
@@ -120,12 +142,12 @@ public class Flights {
         return fromCityFlights;
     }
 
-    private ArrayList<Flight> flightsToDestinationCities(City destinationCity)
+    private ArrayList<Flight> flightsToDestinationCities(int destinationCityID)
     {
         ArrayList<Flight> toCityFlights = new ArrayList<Flight>();
         for(Flight element : flights)
         {
-            if(element.destinationCityID == destinationCity.ID)
+            if(element.destinationCityID == destinationCityID)
             {
                 toCityFlights.add(element);
             }
@@ -134,12 +156,12 @@ public class Flights {
         return toCityFlights;
     }
 
-    private ArrayList<Flight> flightsFromStartToDestination(City startCity, City destinationCity)
+    private ArrayList<Flight> flightsFromStartToDestination(int startCityID, int destinationCityID)
     {
         ArrayList<Flight> fromCityFlights = new ArrayList<Flight>();
         for(Flight element : flights)
         {
-            if(element.startCityID == startCity.ID && element.destinationCityID == destinationCity.ID)
+            if(element.startCityID == startCityID && element.destinationCityID == destinationCityID)
             {
                 fromCityFlights.add(element);
             }
