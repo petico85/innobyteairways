@@ -18,11 +18,16 @@ public class Runable {
           runable.bossMethod();
     }
 
+
+    /**
+     * Beállítja a listákat és változókat
+     * */
     public Runable()
     {
         initLists();
         smallestAndBiggestCities();
     }
+
 
     /**
      * Kiadja a munkákat
@@ -44,6 +49,7 @@ public class Runable {
         System.out.println("Bármely légitársasággal a legrövidebb út:");
         workerMethod(flights);
     }
+
 
     /**
      * Itt történnek a számítások
@@ -85,17 +91,15 @@ public class Runable {
         System.out.println();
     }
 
+
     /**
-     * Percekben megadott int-ből órát csinál
+     * Percekben megadott int-ből egy óra perc kialakítású Stringet készít
      * */
     private String minutesToHour(int minutes)
     {
-        String hours = "";
-
-        hours = (Integer) minutes/60 + " óra " + minutes % 60 + " perc";
-
-        return hours;
+        return (Integer) minutes/60 + " óra " + minutes % 60 + " perc";
     }
+
 
     /**
      * Inicializálja a szükséges listákat és változókat
@@ -107,6 +111,7 @@ public class Runable {
         this.cities = loadXml.loadCities(citiesXmlFile);
         this.flights = loadXml.loadFlights(flightsXmlFile);
     }
+
 
     /**
      * Legkissebb és legnagyobb város kiválasztása
@@ -126,7 +131,5 @@ public class Runable {
             }
         }
     }
-
-
 
 }
