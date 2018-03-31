@@ -1,5 +1,45 @@
 import java.util.ArrayList;
 
+/**
+ * Itt lehet futtatni a kódot.
+ * Az XML könyvtárban lévő xml tipusú fájlokban vannak tárolva a szükséges adatok.
+ * AZért az XML megoldást választottam, mert így azonnal futtatható, és tapasztalataim szerint érdemes minél kevesebb teret engedni a technika ördögének.
+ *
+ * Feladatok:
+ * Légitársaság
+ * - Legyen egy függvény, ami visszaadja az összes járatot amit az adott légitársaság üzemeltet.
+ *  #### main.java.AirLines -->public ArrayList<AirLine> getAirlines()
+ * - Legyen egy függvény, ami visszaadja az összes légitársaságot.
+ *  #### main.java.Flights --> public ArrayList<Flight> getFlightsOfTheAirline(AirLine airLine)
+ *
+ * Járatok
+ * - Legyen távolság km-ben.
+ * - Legyen menetrend szerinti időintervallum.
+ * - Legyen egy függvény, ami visszaadja az összes járatot.
+ * #### main.java.Flights --> public ArrayList<Flight> getFlights()
+ * - Legyen egy függvény, ami visszaadja az összes járatot egy adott városból egy másikba. (ha valamelyik
+ * paraméter null, akkor aszerint nem szűrünk).
+ * #### main.java.Flights --> public ArrayList<Flight> getFlightsStartToDestination(City startCity, City destinationCity)
+ * Város
+ * - Legyen neve
+ * - Legyen lakossága
+ *
+ *
+ * Megoldandó feladat
+ * 1. Az alkalmazás olvassa be az objektumokat a választott adatforrásból.
+ * 2. Az alkalmazás írja ki légitársaságonként, hogy melyik a legrövidebb (km-ben) repülőút a legkisebb
+ * városból a legnagyobb városba, ha csak az adott társaság járatait vesszük igénybe. Ha nem tudunk
+ * eljutni kizárólag az adott társaság gépeivel, akkor azt írja ki.
+ * Írja ki, hogy milyen átszállások vannak melyik városban, és hogy az út összideje mennyi várakozási
+ * időkkel együtt. (Tegyük fel, hogy az összes járat minden óra kezdetén indul.)
+ * 3. Az alkalmazás számolja ki ugyanezt úgy is, hogy bármelyik légitársaság gépeit használhatjuk.
+ * 4. Az idő intervallumok megjelenítése óra perc bontásban legyen, pl. 10 perc, 2 óra 10 perc, 34 óra 30
+ * perc.
+ *
+ * ### A feladatok ennek az osztálynak a main függvényének indításával futnak le.
+ *
+ *
+ * */
 public class Runable {
 
     private City smallestCity = null;
@@ -69,15 +109,14 @@ public class Runable {
                         + minutesToHour(flight.flightTime));
                 tripTime +=  flight.flightTime;
 
-                /**
-                 * Én úgy számoltam, hogy ha egész órában ér be a járat, már nincs idő elérni a következőt,
-                 * de ha optimista verziót követném, akkor a megoldás ez lenne
-                 * waitingTime = flight.flightTime % 60;
-                 *                 if(waitingTime != 0)
-                 *                 {
-                 *                     waitingTime = 60 - waitingTime;
-                 *                 }
-                 * */
+                 //Én úgy számoltam, hogy ha egész órában ér be a járat, már nincs idő elérni a következőt,
+                 //de ha optimista verziót követném, akkor a megoldás ez lenne:
+                 //waitingTime = flight.flightTime % 60;
+                 //                 if(waitingTime != 0)
+                 //                 {
+                 //                     waitingTime = 60 - waitingTime;
+                 //               }
+
                 waitingTime = 60 - flight.flightTime % 60;
 
 
@@ -97,7 +136,7 @@ public class Runable {
      * */
     private String minutesToHour(int minutes)
     {
-        return (Integer) minutes/60 + " óra " + minutes % 60 + " perc";
+        return minutes/60 + " óra " + minutes % 60 + " perc";
     }
 
 

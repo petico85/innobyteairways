@@ -128,6 +128,9 @@ public class Flights {
     }
 
 
+    /**
+     * Public, mert ezt a metódust használom a ShortestWay osztályból is.
+     * */
     public ArrayList<Flight> flightsFromStartCities(int startCityID)
     {
         ArrayList<Flight> fromCityFlights = new ArrayList<Flight>();

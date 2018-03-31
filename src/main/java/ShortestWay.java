@@ -10,9 +10,32 @@ public class ShortestWay {
     public ShortestWay() { }
 
     /**
-     * Ez egy célhoz módosított dijkstra algoritmus
+     *
      * Minden élhez megtudtuk a legrövidebb utakat.
      * Minden élből megtudhatjuk hogy melyik út vezetett oda, így ha végzett az algoritmus akkor a célvárosból visszafejthető az út
+     *
+     * A Dijkstra algoritmust nézegettem, mielőtt nekiáltam  ezt megvalósítani,
+     * és utólag megnézve tulajdonképpen valami nagyon hasonlót sikerült megírnom.
+     *
+     * létrehozok egy gráfot ami a csúcs elemek listája
+     * Egy csúcs tartalmaz:
+     *  - ID //az azonosításhoz
+     *  - distance //itt lesz tárolva, hogy milyen hosszú út vezetett idáig.
+     *  - flightsFrom //az innen induló élek azonosítóinak listája
+     *  - flightTo //az ide érkező él azonosítója
+     *
+     *  futás:
+     *  Az induló csúcsal kezdünk, berakjuk a cityIDs listába az azonosítóját
+     *  Elindul egy ciklus ami addig fut amíg a cityIDs lista nem üres.
+     *     Kivesszük a cityIDs lista legelső elemét ez lesz az aktuális csúcs
+     *     végignézzük az aktuális csúcsból induló éleket
+     *     kiszámoljuk a távolságokat az élekhez, ez az él távolság értékének és az induló csúcs távolság értékének az összege
+     *     ha a célcsúcshoz még nem vezetett út, vagy vezetett, de nagyobb távolság értékkel, akkor feltöltjük ennek az útnak az adataival:
+     *       Az érkező (flightTo) azonosítónak megadjuk az oda vezető él azonosítóját
+     *       A távolság értékét átjavítjuk az ehhez az úthoz tartozóval
+     *     a csúcs azonosítóját felvesszük a cityIDs listába
+     *  Miután végimentünk az összes élen, töröljük az élek listáját az induló csúcsból, így nem tud végtelen ciklus kialakulni, ha kör van a gráfban
+     *
      * */
 
     public Flights searchShortestWay(Flights flights, int startCityID, int destinationCityID)
@@ -28,7 +51,7 @@ public class ShortestWay {
         }
 
         cityIDs.add(startCityID);//kezdőelemt választunk
-        while(cityIDs.size()>0) {
+        while(!cityIDs.isEmpty()) {
 
             int actCityId = cityIDs.get(0);//első csúcspontot kiszedjük feldolgozni
             cityIDs.remove(0);//eltávolítjuk a bejárandó csúcspontok listájáról mert most be fogjuk járni
@@ -58,8 +81,7 @@ public class ShortestWay {
         }
         else
         {
-            Flights shortestWay = calculatedWay(startCityID, destinationVertex, Q, flights);
-            return shortestWay;
+            return calculatedWay(startCityID, destinationVertex, Q, flights);
         }
 
     }
@@ -103,7 +125,7 @@ public class ShortestWay {
         boolean destiantion = false;
         int i = 0;
         ArrayList<Vertex> vertexList = Q.getGraph();
-        while((start == false || destiantion == false) && i < vertexList.size())
+        while((!start || !destiantion) && i < vertexList.size())
         {
             if(vertexList.get(i).ID == startCityID){
                 start = true;
